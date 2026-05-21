@@ -24,10 +24,7 @@
 
 **워크플로우**: 계획(기획자) → 구현(개발자) → 검증(검토자) → 배포(기획자)
 
-세션 시작:
-```
-이 프로젝트의 기획자 역할입니다. .claude/CLAUDE.md를 읽은 후 ARCHITECT.md를 읽어주세요.
-```
+**역할 지정 시 해당 파일을 즉시 읽을 것**: 기획자 → `ARCHITECT.md` / 개발자 → `BUILDER.md` / 검토자 → `REVIEWER.md`
 
 > 에이전트 모델: 기획자 `claude-opus-4-7` / 개발자 `claude-sonnet-4-6` / 검토자 `claude-haiku-4-5-20251001`
 
