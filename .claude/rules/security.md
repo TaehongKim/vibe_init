@@ -297,7 +297,7 @@ const minio = new Client({ ... })
 
 // 업로드용 presigned URL (5분 만료)
 export async function getUploadUrl(objectName: string): Promise<string> {
-  return minio.presignedPutObject('kiom-files', objectName, 5 * 60)
+  return minio.presignedPutObject('your-bucket-name', objectName, 5 * 60)
 }
 
 // 다운로드용 presigned URL (1시간 만료)
@@ -306,11 +306,11 @@ export async function getDownloadUrl(objectName: string): Promise<string> {
   const session = await getServerSession(authOptions)
   if (!session) throw new Error('UNAUTHORIZED')
 
-  return minio.presignedGetObject('kiom-files', objectName, 60 * 60)
+  return minio.presignedGetObject('your-bucket-name', objectName, 60 * 60)
 }
 
 // ❌ 절대 금지 — 파일 URL을 DB에 public URL로 저장
-// fileUrl: 'https://minio.kiom.re.kr/kiom-files/report.pdf'  ← 직접 접근 가능
+// fileUrl: 'https://[your-minio-host]/your-bucket-name/report.pdf'  ← 직접 접근 가능
 ```
 
 ---

@@ -1,16 +1,16 @@
 # 기술 스택 및 구조
 
-## 기술 스택 (고정)
+## 기술 스택 (기본값 — 프로젝트에 맞게 변경 가능)
+
+> 이 목록은 템플릿 기본값입니다. 변경 시 이 파일과 `coding.md`, `security.md`를 함께 수정하세요.
 
 ```
 Next.js 15        App Router, TypeScript strict mode
-Tailwind CSS v4   스타일링 (CSS Modules 사용 금지)
-Prisma ORM        PostgreSQL 16 연동
-NextAuth v5       인증 (LDAP CredentialsProvider)
-Elasticsearch 8   전문 검색
-MinIO             파일 저장 (S3 호환)
-Zod               입력값 검증 (Yup 사용 금지)
-SWR               클라이언트 데이터 페칭 (React Query 사용 금지)
+Tailwind CSS v4   스타일링
+Prisma ORM        PostgreSQL 연동
+NextAuth v5       인증 (provider는 프로젝트에 맞게 변경)
+Zod               입력값 검증
+SWR               클라이언트 데이터 페칭
 Vitest            단위 테스트
 Playwright        E2E 테스트
 ```
@@ -47,5 +47,5 @@ pnpm dev
 pnpm prisma migrate dev --name [변경내용] && pnpm prisma generate
 pnpm test && pnpm test:e2e
 pnpm build && pnpm start
-pm2 restart kiom-portal
+pm2 restart [프로젝트명]
 ```

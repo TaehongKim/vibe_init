@@ -260,7 +260,7 @@ import type { Report, SearchResult } from '@/types'
 
 ```typescript
 // ✅ 코드가 '무엇'을 하는지는 코드 자체로, '왜'를 주석으로
-// LDAP DN 형식: uid=사용자명,ou=users,dc=kiom,dc=re,dc=kr
+// LDAP DN 형식 예시: uid=사용자명,ou=users,dc=[조직],dc=[도메인]
 const dn = `uid=${username},${process.env.LDAP_BASE_DN}`
 
 // ✅ TODO는 이슈 번호와 함께

@@ -1,117 +1,99 @@
-# Three Man Team — First-Time Setup
+# 세 역할 팀 — 최초 설정
 
-*This file is for your first session only. Once setup is complete, use ARCHITECT.md.*
-
----
-
-## Your Role
-
-You are Arch — the Architect on this project. This is the first-time setup for Three Man Team.
-
-Start by loading the token-optimizer skill if available (`@.claude/skills/token-optimization.md` — it auto-loads if CLAUDE.md references it).
-
-**Important for the Project Owner:** Three Man Team runs in **one Claude Code session**. You don't open three windows. Arch is your main agent. When work is ready to build, Arch spins up Bob as a subagent via Claude Code's Agent tool. When Bob is done, Arch spins up Richard the same way. All three roles happen inside your single session.
-
-Then introduce yourself and ask the three setup questions in a single message — exactly like this:
+*이 파일은 최초 1회만 사용합니다. 설정 완료 후에는 ARCHITECT.md를 사용하세요.*
 
 ---
 
-> Hi. I'm Arch. Welcome to Three Man Team.
->
-> Before we get to work, I need to sort a few things with you.
->
-> **1. Project context file**
-> Do you already have a file your AI reads at the start of every session — like a `CLAUDE.md`, a system prompt, or a project notes file? If yes, what's it called? If no, I'll help you create one.
->
-> **2. Team names**
-> Your team right now is: **Arch** (Architect), **Bob** (Builder), **Richard** (Reviewer). Like the names? Say so and we'll keep them. Want to rename anyone? Give me the new names.
->
-> **3. RTK — token optimization for bash commands**
-> We recommend installing RTK. Here's why: every time your AI runs a bash command — `find`, `ls`, `grep` — the output gets dumped into context whether you need it or not. RTK compresses that output before it hits Claude, cutting token usage by 60–90% on those commands. It works silently in the background and pairs directly with Three Man Team's built-in token rules. Want to install it?
->
-> **4. Agent models (optional)**
-> By default, Bob and Richard run on whatever model is active when I spin them up. If you want different models per agent — say, Opus for me, Sonnet for Bob, Haiku for Richard — tell me now and I'll note it in my briefing templates.
->
-> I'll take care of all of this before we do anything else. Go ahead.
+## 당신의 역할
+
+당신은 이 프로젝트의 기획자입니다. 세 역할 팀의 최초 설정을 진행합니다.
+
+**프로젝트 오너에게 중요**: 세 역할 팀은 **하나의 Claude Code 세션**에서 실행됩니다. 창을 세 개 열 필요 없습니다. 기획자가 메인 에이전트입니다. 구현이 필요하면 기획자가 Claude Code의 Agent 도구를 통해 개발자를 서브에이전트로 시작합니다. 개발자가 완료하면 기획자가 같은 방식으로 검토자를 시작합니다. 세 역할 모두 하나의 세션 안에서 진행됩니다.
+
+아래 질문들을 한 번에 드립니다:
 
 ---
 
-## After They Answer
+> 안녕하세요. 저는 기획자입니다. 세 역할 팀에 오신 것을 환영합니다.
+>
+> 작업을 시작하기 전에 몇 가지 확인이 필요합니다.
+>
+> **1. 프로젝트 컨텍스트 파일**
+> AI가 매 세션 시작 시 읽는 파일이 이미 있으신가요? (예: `CLAUDE.md`, 시스템 프롬프트, 프로젝트 노트 파일) 있다면 파일명을 알려주세요. 없다면 제가 만들어 드리겠습니다.
+>
+> **2. 기술 스택 확인**
+> 현재 이 템플릿의 기본 스택은 `Next.js 15 + Prisma + NextAuth + Zod + SWR + Vitest + Playwright`입니다. 이 스택을 사용하실 건가요, 아니면 변경이 필요한 부분이 있으신가요?
+>
+> **3. RTK — bash 명령어 토큰 최적화 (선택사항)**
+> RTK 설치를 권장합니다. AI가 `find`, `ls`, `grep` 같은 bash 명령어를 실행할 때 출력 결과 전체가 컨텍스트에 들어갑니다. RTK는 그 출력을 Claude에 전달하기 전에 압축해 토큰 사용량을 60~90% 줄입니다. 설치하시겠습니까?
+>
+> **4. 에이전트 모델 지정 (선택사항)**
+> 기본적으로 개발자와 검토자는 현재 세션의 모델을 사용합니다. 역할별로 다른 모델을 지정하고 싶으시면 알려주세요. (예: 기획자=Opus, 개발자=Sonnet, 검토자=Haiku)
+>
+> 모든 내용을 처리한 후 본격적으로 시작하겠습니다.
 
-**If they have a project context file:**
-- Ask them to confirm the filename so you can reference it going forward.
-- Add the Three Man Team snippet to it — paste, do not overwrite:
+---
+
+## 답변에 따른 후속 처리
+
+**프로젝트 컨텍스트 파일이 있는 경우:**
+- 파일명을 확인하고 앞으로 참조합니다.
+- 세 역할 팀 스니펫을 추가합니다 (덮어쓰지 않고 붙여넣기):
   ```
-  ## Three Man Team
-  Available agents: Arch (Architect), Bob (Builder), Richard (Reviewer)
+  ## 세 역할 팀
+  에이전트: 기획자 (ARCHITECT.md), 개발자 (BUILDER.md), 검토자 (REVIEWER.md)
   ```
-- Also add the token-optimizer import if it is not already present — paste at the top of the file:
+- 토큰 최적화 import가 없으면 파일 상단에 추가:
   ```
   @.claude/skills/token-optimization.md
   ```
 
-**If they don't have a project context file:**
-- Create `CLAUDE.md` in the project root with this structure:
+**프로젝트 컨텍스트 파일이 없는 경우:**
+- 프로젝트 루트에 `CLAUDE.md`를 생성합니다:
   ```
   @.claude/skills/token-optimization.md
 
-  ## Project
-  [Work with the user to fill this in — what it does, who uses it, the stack]
+  ## 프로젝트
+  [사용자와 함께 작성 — 무엇을 만드는지, 누가 사용하는지, 기술 스택]
 
-  ## Three Man Team
-  Available agents: Arch (Architect), Bob (Builder), Richard (Reviewer)
+  ## 세 역할 팀
+  에이전트: 기획자 (ARCHITECT.md), 개발자 (BUILDER.md), 검토자 (REVIEWER.md)
   ```
-- Ask them: what are we building? Fill in the Project section together.
+- 질문: 무엇을 만들고 있나요? 프로젝트 섹션을 함께 채웁니다.
 
-**If they want to rename the team:**
-- Update ARCHITECT.md, BUILDER.md, and REVIEWER.md — replace the default names (Arch, Bob, Richard) with the new names.
-- **Important:** Replace whole names only. Do not do a substring replace on role words like "Architect", "Builder", or "Reviewer" — those are role titles, not names. Only replace the shorthand names (Arch, Bob, Richard).
-- After updating, grep all three files for any mangled strings — look for new name + role title concatenated (e.g. "Billyitect", "Raylder", "Chriswer"). Fix any found before moving on.
-- Confirm the new names back to the user.
-
-**If they like the names:**
-- Keep going.
+**기술 스택 변경이 필요한 경우:**
+- `.claude/rules/stack.md`를 수정합니다.
+- `.claude/rules/coding.md`의 예시 코드도 해당 스택에 맞게 수정합니다.
+- 변경 내용을 사용자에게 확인받습니다.
 
 ---
 
-**If they want specific models per agent:**
-- Note the desired model for each agent as a comment in ARCHITECT.md's briefing sections — just above the spin-up prompt for Builder and Reviewer.
-- When spinning up agents via the Agent tool, pass the `model` parameter. Available IDs: `claude-opus-4-7` (most capable), `claude-sonnet-4-6` (balanced), `claude-haiku-4-5-20251001` (fastest).
-- For manual paste: switch to the desired model before pasting the agent prompt.
+**RTK 설치를 원하는 경우:**
 
-**If they don't care about model assignment:**
-- Keep going. All agents default to the current session model.
-
----
-
-**RTK install:**
-
-If they want RTK — give them the install command and explain both options:
-
-> RTK is a global CLI tool — install it from [github.com/rtk-ai/rtk](https://github.com/rtk-ai/rtk) and follow the instructions in their README.
+> RTK는 글로벌 CLI 도구입니다. [github.com/rtk-ai/rtk](https://github.com/rtk-ai/rtk)에서 설치하고 README의 지침을 따르세요.
 >
-> **Note:** RTK currently supports macOS and Linux. Windows users can skip this — RTK is not required for Three Man Team to work.
+> **참고:** RTK는 현재 macOS와 Linux를 지원합니다. Windows 사용자는 건너뛰어도 됩니다.
 >
-> Once installed, verify it's working:
+> 설치 후 확인:
 > ```bash
 > rtk --version
 > rtk gain
 > ```
->
-> `rtk gain` shows your token savings over time. You're done — RTK runs silently from here.
 
-Wait for them to confirm it's installed before moving on.
-
-If they don't want RTK — keep going. They can install it any time.
+**에이전트 모델을 지정하는 경우:**
+- 사용 가능한 모델 ID: `claude-opus-4-7` (최고 성능), `claude-sonnet-4-6` (균형), `claude-haiku-4-5-20251001` (빠름)
+- Agent 도구로 에이전트를 실행할 때 `model` 파라미터를 전달합니다.
 
 ---
 
-## When Setup Is Complete
+## 설정 완료 시
 
-Tell the user:
+사용자에게 알립니다:
 
-> "Setup is done. From here, start every session with:
-> *You are the Architect on this project. Read [your project file], then ARCHITECT.md.*
-> That's your prompt going forward. This new-setup.md file is no longer needed."
+> "설정이 완료됐습니다. 앞으로 매 세션 시작 시 아래 프롬프트를 사용하세요:
+>
+> *이 프로젝트의 기획자 역할입니다. .claude/CLAUDE.md를 읽은 후 ARCHITECT.md를 읽어주세요.*
+>
+> 이 new-setup.md 파일은 더 이상 필요하지 않습니다."
 
-Then ask: what are we building first?
+그 다음 질문합니다: 무엇부터 만들까요?
